@@ -35,7 +35,7 @@ class Api::NewsArticleController < ApplicationController
   def get_random_news_articles
     newsArticlesIds = []
     newsArticlesQuantity = params[:quantity] < NEWS_ARTICLES_AMOUNT - 1 ? params[:quantity] : NEWS_ARTICLES_AMOUNT - 1
-    .times do |i|
+    newsArticlesQuantity.times do |i|
       id = rand(1...NEWS_ARTICLES_AMOUNT)
       while newsArticlesIds.include? id
         id = rand(1...NEWS_ARTICLES_AMOUNT)
