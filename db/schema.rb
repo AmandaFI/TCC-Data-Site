@@ -21,9 +21,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_185724) do
 
   create_table "subjects", force: :cascade do |t|
     t.string "email", null: false
-    t.float "score"
+    t.float "score", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_subjects_on_email", unique: true
   end
 
 end
