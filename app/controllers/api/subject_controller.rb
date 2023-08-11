@@ -1,6 +1,6 @@
 class Api::SubjectController < ApplicationController
 
-  before_action :find_subject, only: [:show, :update, :destroy]
+  before_action :find_subject, only: [:show, :destroy]
 
   def index
     render json: Subject.all
@@ -39,10 +39,6 @@ class Api::SubjectController < ApplicationController
   end
 
   def create_params
-    params.permit(:email)
-  end
-
-  def update_params
-    params.permit(:score)
+    params.permit(:email, :score)
   end
 end

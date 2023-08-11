@@ -2,6 +2,8 @@ class Api::NewsArticleController < ApplicationController
 
   before_action :find_news_article, only: [:show, :update, :destroy]
 
+  NEWS_ARTICLES_AMOUNT = 20
+
   def show
     render json: @news_article
   end
@@ -28,6 +30,22 @@ class Api::NewsArticleController < ApplicationController
     head :no_content
   end
 
+  def get_random_news_articles
+    newsArticlesIds = []
+    params[:quantity].times do |i|
+      id = rand(1...NEWS_ARTICLES_AMOUNT)
+      while newsArticlesIds.include? id
+        id = rand(1...NEWS_ARTICLES_AMOUNT)
+      end
+      newsArticlesIds << id
+    end
+
+    newsArticles = NewsArticle.where(id: newsArticlesIds)
+
+    render json: newsArticles, status: :ok
+
+  end
+
   private
 
   def find_news_article
@@ -40,5 +58,9 @@ class Api::NewsArticleController < ApplicationController
 
   def update_params
     params.permit(:content, :label, :origin_site)
+  end
+
+  def random_articles_params
+    params.permit(:quantity)
   end
 end
