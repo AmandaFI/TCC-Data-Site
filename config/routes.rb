@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
-  namespace :api do
-    get 'subject/index'
-    get 'subject/show'
-    get 'subject/create'
-    get 'subject/update'
-    get 'subject/destroy'
-    get 'news_article/show'
-    get 'news_article/create'
-    get 'news_article/update'
-    get 'news_article/destroy'
+  namespace :api, defaults: { format: :json } do
+
+    resources :news_article, only: [ :create, :show, :update, :destroy ]
+    resources :subject, only: [ :index, :create, :show, :update, :destroy ]
+
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

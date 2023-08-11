@@ -12,7 +12,7 @@ origin_site = ['BBC', 'TechCrunch', 'TheVerge']
 puts 'Generating news...'
 news = 20.times.map do |i|
   NewsArticle.create!(
-    content: Faker::Lorem.sentence(word_count: 100),
+    content: Faker::Lorem.sentence(word_count: 500),
     label: labels.sample,
     origin_site: origin_site.sample
   )

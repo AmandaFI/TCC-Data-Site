@@ -20,6 +20,7 @@ class Api::NewsArticleController < ApplicationController
       render json: @news_article, status: :ok
     else
       render json: {errors: @news_article.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def destroy
