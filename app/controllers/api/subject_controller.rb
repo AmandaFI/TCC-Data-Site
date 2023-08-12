@@ -1,6 +1,7 @@
 class Api::SubjectController < ApplicationController
 
   before_action :find_subject, only: [:show, :destroy]
+  before_action :find_by_email, only: [:check_email]
 
   def index
     render json: Subject.all
@@ -32,10 +33,18 @@ class Api::SubjectController < ApplicationController
     head :no_content
   end
 
+  def check_email
+    render json: @subject
+  end
+
   private
 
   def find_subject
     @subject = Subject.find_by(params[:id])
+  end
+
+  def find_by_email
+    @subject = Subject.find_by(email: params[:email])
   end
 
   def create_params
