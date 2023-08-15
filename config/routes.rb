@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
 
     resources :news_article, only: [ :create, :show, :update, :destroy ] do
-      post :get_random_news_articles, on: :collection
+      get :get_random_news_articles, on: :collection
     end
     resources :subject, only: [ :index, :create, :show, :destroy ] do
       post :check_email, on: :collection

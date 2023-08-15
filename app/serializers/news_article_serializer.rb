@@ -1,3 +1,3 @@
 class NewsArticleSerializer < ActiveModel::Serializer
-  attributes :id, :content, :label, :origin_site
+  attributes :id, :content, :label
 end

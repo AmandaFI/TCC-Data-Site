@@ -33,20 +33,10 @@ class Api::NewsArticleController < ApplicationController
   end
 
   def get_random_news_articles
-    newsArticlesIds = []
-    newsArticlesQuantity = params[:quantity] < NEWS_ARTICLES_AMOUNT - 1 ? params[:quantity] : NEWS_ARTICLES_AMOUNT - 1
-    newsArticlesQuantity.times do |i|
-      id = rand(1...NEWS_ARTICLES_AMOUNT)
-      while newsArticlesIds.include? id
-        id = rand(1...NEWS_ARTICLES_AMOUNT)
-      end
-      newsArticlesIds << id
-    end
-
-    newsArticles = NewsArticle.where(id: newsArticlesIds)
+    quantity = params[:quantity].to_i < NEWS_ARTICLES_AMOUNT - 1 ? params[:quantity].to_i : NEWS_ARTICLES_AMOUNT - 1
+    newsArticles = NewsArticle.random_articles(quantity)
 
     render json: newsArticles, status: :ok
-
   end
 
   private
