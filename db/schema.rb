@@ -14,7 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_185724) do
   create_table "news_articles", force: :cascade do |t|
     t.string "content", null: false
     t.string "label", null: false
-    t.string "origin_site", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
